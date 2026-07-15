@@ -1,0 +1,30 @@
+# Terraform
+
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+
+# Ansible
+
+*.retry
+
+# Python
+
+__pycache__/
+
+# VS Code
+
+.vscode/
+
+# Linux
+
+*.swp
+
+# Jenkins
+
+workspace/
+
+# Logs
+
+*.log
