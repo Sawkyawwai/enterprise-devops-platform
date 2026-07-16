@@ -2,8 +2,14 @@ module "vpc" {
 
   source = "../../modules/vpc"
 
-  vpc_name    = "enterprise-dev-vpc"
-  cidr_block  = var.vpc_cidr
+  vpc_name = "enterprise-dev-vpc"
+
+  cidr_block = var.vpc_cidr
+
+  public_subnet_cidr = var.public_subnet_cidr
+
+  availability_zone = var.availability_zone
+
   environment = var.environment
 
 }
