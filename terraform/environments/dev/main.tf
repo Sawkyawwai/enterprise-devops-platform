@@ -35,3 +35,26 @@ module "key_pair" {
   public_key_path = var.public_key_path
 
 }
+
+module "ec2" {
+
+  source = "../../modules/ec2"
+
+  instance_name = "enterprise-dev-server"
+
+  ami_id = var.ami_id
+
+  instance_type = var.instance_type
+
+  subnet_id = module.vpc.public_subnet_id
+
+  security_group_id = module.security_group.security_group_id
+
+  key_name = module.key_pair.key_name
+
+  environment = var.environment
+
+}
+
+
+

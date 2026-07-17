@@ -12,3 +12,13 @@ variable "environment" {
   description = "Environment Name"
   type        = string
 }
+
+variable "public_subnet_cidr" {
+  description = "Public subnet CIDR"
+  type        = string
+}
+
+variable "availability_zone" {
+  description = "Availability Zone"
+  type        = string
+}

@@ -20,3 +20,11 @@ variable "public_key_path" {
   description = "Path to public SSH key"
   type        = string
 }
+
+variable "ami_id" {
+  type = string
+}
+
+variable "instance_type" {
+  type = string
+}

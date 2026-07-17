@@ -1,0 +1,7 @@
+output "key_name" {
+
+  description = "AWS Key Pair Name"
+
+  value = aws_key_pair.this.key_name
+
+}
