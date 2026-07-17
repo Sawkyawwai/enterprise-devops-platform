@@ -26,3 +26,12 @@ module "security_group" {
 
 }
 
+module "key_pair" {
+
+  source = "../../modules/key-pair"
+
+  key_name = "enterprise-dev-key"
+
+  public_key_path = var.public_key_path
+
+}

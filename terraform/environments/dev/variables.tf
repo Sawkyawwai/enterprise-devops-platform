@@ -15,3 +15,8 @@ variable "public_subnet_cidr" {
 variable "availability_zone" {
   type = string
 }
+
+variable "public_key_path" {
+  description = "Path to public SSH key"
+  type        = string
+}
