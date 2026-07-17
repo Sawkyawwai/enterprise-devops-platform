@@ -1,0 +1,27 @@
+---
+- name: Verify Managed Servers
+  hosts: web
+  become: true
+  gather_facts: true
+
+  tasks:
+
+    - name: Show hostname
+      ansible.builtin.debug:
+        msg: "Hostname: {{ ansible_hostname }}"
+
+    - name: Show operating system
+      ansible.builtin.debug:
+        msg: "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Show IP address
+      ansible.builtin.debug:
+        msg: "IP Address: {{ ansible_default_ipv4.address }}"
+
+    - name: Show CPU cores
+      ansible.builtin.debug:
+        msg: "CPU Cores: {{ ansible_processor_vcpus }}"
+
+    - name: Show total memory
+      ansible.builtin.debug:
+        msg: "Memory: {{ ansible_memtotal_mb }} MB"
