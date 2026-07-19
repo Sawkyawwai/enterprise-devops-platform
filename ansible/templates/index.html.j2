@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enterprise DevOps Platform</title>
+</head>
+
+<body>
+
+<h1>Enterprise DevOps Platform</h1>
+
+<p>This page was deployed using <strong>Ansible Template</strong>.</p>
+
+<hr>
+
+<h2>Server Information</h2>
+
+<ul>
+    <li><strong>Hostname:</strong> {{ ansible_hostname }}</li>
+    <li><strong>Operating System:</strong> {{ ansible_distribution }}</li>
+    <li><strong>OS Version:</strong> {{ ansible_distribution_version }}</li>
+    <li><strong>Environment:</strong> {{ environment }}</li>
+    <li><strong>Company:</strong> {{ company }}</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+---
+- name: Deploy Dynamic Web Page
+  hosts: web
+  become: true
+  tasks:
+    - name: Deploy template
+      template:
+        src: ../templates/index.html.j2
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
