@@ -1,0 +1,34 @@
+---
+# tasks file for roles/nginx
+
+- name: Update apt package cache
+  apt:
+    update_cache: yes
+
+- name: Instal Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Deploy website template
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Deploy nginx config
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart_Nginx
+
+- name: Ensure nginx is running
+  service:
+    name: nginx
+    state: started
+    enabled: true
