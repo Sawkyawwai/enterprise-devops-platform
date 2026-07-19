@@ -1,0 +1,14 @@
+---
+- name: Deploy Custom Web Page
+  hosts: web
+  become: true
+
+  tasks:
+
+    - name: Copy custom index.html
+      ansible.builtin.copy:
+        src: ../files/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
