@@ -21,11 +21,9 @@ pipeline {
         stage('Generate terraform.auto.tfvars') {
             steps {
                 dir("${TF_DIR}") {
-
-                    script {
-                        writeFile(
-                            file: 'terraform.auto.tfvars',
-                            text: '''\
+                    writeFile(
+                        file: 'terraform.auto.tfvars',
+                        text: '''\
 vpc_cidr           = "10.10.0.0/16"
 public_subnet_cidr = "10.10.1.0/24"
 availability_zone  = "ap-southeast-1a"
@@ -34,13 +32,11 @@ ami_id             = "ami-0ed6a65b84536f6ce"
 instance_type      = "t2.micro"
 public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
 '''.stripIndent()
-                        )
-                    }
+                    )
 
                     sh '''
                         echo "===== terraform.auto.tfvars ====="
                         cat terraform.auto.tfvars
-
                         terraform fmt terraform.auto.tfvars
                     '''
                 }
@@ -82,23 +78,27 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
             }
         }
 
+        stage('Archive Terraform Plan') {
+            steps {
+                dir("${TF_DIR}") {
+                    archiveArtifacts artifacts: 'tfplan', fingerprint: true
+                }
+            }
+        }
     }
 
     post {
 
         success {
-            dir("${TF_DIR}") {
-                archiveArtifacts artifacts: 'tfplan', fingerprint: true
-            }
-            echo 'Pipeline completed successfully.'
+            echo 'Terraform CI Pipeline completed successfully.'
         }
 
         failure {
-            echo 'Pipeline failed.'
+            echo 'Terraform CI Pipeline failed.'
         }
 
         always {
-            cleanWs()
+            cleanWs(deleteDirs: true)
         }
     }
 }
