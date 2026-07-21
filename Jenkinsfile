@@ -39,9 +39,9 @@ pipeline {
            }
        }
       
-        post {
-        success {
-            archiveArtifacts artifacts: 'terraform/tfplan'
+            post {
+                success {
+                    archiveArtifacts artifacts: 'terraform/tfplan'
         }
      }
   }
