@@ -30,7 +30,7 @@ availability_zone  = "ap-southeast-1a"
 ami_id             = "ami-0ed6a65b84536f6ce"
 instance_type      = "t2.micro"
 
-aws_region         = "ap-southeast-1"
+aws_region         = "ap-southeast-1a"
 
 public_key_path    = "/home/saw/.ssh/id_ed25519.pub"
 '''
