@@ -41,11 +41,6 @@ pipeline {
                 }
             }
         }
-            post {
-                success {
-                    archiveArtifacts artifacts: 'terraform/tfplan'
-          }
-      }
    }
 
 }
