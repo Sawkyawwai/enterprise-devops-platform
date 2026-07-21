@@ -12,7 +12,7 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                dir('terraform') {
+                dir('terraform/environments/dev') {
                     sh 'terraform init'
                 }
             }
@@ -20,7 +20,7 @@ pipeline {
 
         stage('Terraform Format') {
             steps {
-                dir('terraform') {
+                dir('terraform/environments/dev') {
                     sh 'terraform fmt -check -recursive'
                 }
             }
@@ -28,7 +28,7 @@ pipeline {
 
         stage('Terraform Validate') {
             steps {
-                dir('terraform') {
+                dir('terraform/environments/dev') {
                     sh 'terraform validate'
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                dir('terraform') {
+                dir('terraform/environments/dev') {
                     sh 'terraform plan -out=tfplan'
                 }
             }
