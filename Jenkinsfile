@@ -12,29 +12,38 @@ pipeline {
 
         }
 
-        stage('Environment Check') {
+        stage('Terraform Init') {
 
             steps {
 
-                sh '''
-                    echo "Current User:"
-                    whoami
-
-                    echo
-
-                    echo "Workspace:"
-                    pwd
-
-                    echo
-
-                    echo "Repository Contents:"
-                    ls -lah
-                '''
+                dir('terraform') {
+                    sh 'terraform init'
+               }
 
             }
 
         }
+        stage('Terraform Fromat') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform fmt -check -recursive'
+              }
+           }
+        }
 
-    }
+        stage('Terraform validate') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform plan -out=tfplan'
+              }
+           }
+       }
+      
+        post {
+        success {
+            archiveArtifacts artifacts: 'terraform/tfplan'
+        }
+     }
+  }
 
 }
