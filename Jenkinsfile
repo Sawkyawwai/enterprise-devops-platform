@@ -5,39 +5,47 @@ pipeline {
     stages {
 
         stage('Checkout Source') {
-
             steps {
                 checkout scm
             }
-
         }
 
         stage('Terraform Init') {
-
             steps {
-
                 dir('terraform') {
                     sh 'terraform init'
-               }
-
+                }
             }
-
         }
-        stage('Terraform Fromat') {
+
+        stage('Terraform Format') {
             steps {
                 dir('terraform') {
                     sh 'terraform fmt -check -recursive'
-              }
-           }
+                }
+            }
         }
 
-        stage('Terraform validate') {
+        stage('Terraform Validate') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform validate'
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
             steps {
                 dir('terraform') {
                     sh 'terraform plan -out=tfplan'
-              }
-           }
-       }
-    }
+                }
+            }
+        }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'terraform/tfplan'
+          }
+      }
+   }
 
-  }
+}
