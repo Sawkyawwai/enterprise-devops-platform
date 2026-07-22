@@ -85,50 +85,52 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
                 }
             }
         }
-    }
 
         stage('Manual Approval') {
             steps {
-                 timeout(time: 30, unit: 'MINUTES') {
-                     input(
+                timeout(time: 30, unit: 'MINUTES') {
+                    input(
                         message: 'Apply Terraform changes to AWS?',
                         ok: 'Deploy'
-            )
+                    )
+                }
+            }
         }
-    }
-}
 
         stage('Terraform Apply') {
             steps {
-                 dir("${TF_DIR}") {
+                dir("${TF_DIR}") {
                     sh 'terraform apply -auto-approve tfplan'
+                }
+            }
         }
-    }
-}
 
         stage('Terraform Output') {
             steps {
-                 dir("${TF_DIR}") {
+                dir("${TF_DIR}") {
                     sh '''
                         echo "===== Terraform Outputs ====="
                         terraform output
-            '''
+                    '''
+                }
+            }
         }
+
     }
-}
 
     post {
 
         success {
-            echo 'Terraform CI Pipeline completed successfully.'
+            echo 'Terraform CD Pipeline completed successfully.'
         }
 
         failure {
-            echo 'Terraform CI Pipeline failed.'
+            echo 'Terraform CD Pipeline failed.'
         }
 
         always {
             cleanWs(deleteDirs: true)
         }
     }
+
 }
