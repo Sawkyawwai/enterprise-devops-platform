@@ -118,6 +118,19 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
 
     }
 
+        stage('Terraform Destroy') {
+    steps {
+        input(
+            message: 'Destroy AWS infrastructure?',
+            ok: 'Destroy'
+        )
+
+        dir("${TF_DIR}") {
+            sh 'terraform destroy -auto-approve'
+        }
+    }
+}
+
     post {
 
         success {
