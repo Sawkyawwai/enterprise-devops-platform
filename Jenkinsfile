@@ -116,6 +116,33 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
             }
         }
 
+        stage('Update Ansible Inventory') {
+            steps {
+                dir("${TF_DIR}") {
+
+                    script {
+
+                        def publicIp = sh(
+                            script: "terraform output -raw instance_public_ip",
+                            returnStdout: true
+                            ).trim()
+
+                            echo "Public IP: ${publicIp}"
+
+                        sh """
+                            sed -i 's/^web1 ansible_host=.*/web1 ansible_host=${publicIp}/' \
+                            ../../../../ansible/inventories/dev/hosts
+                            """
+
+                        sh '''
+                            echo "===== Updated Inventory ====="
+                            cat ../../../../ansible/inventories/dev/hosts
+                            '''
+            }
+        }
+    }
+}
+
     }
 
     post {
