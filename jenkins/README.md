@@ -231,11 +231,36 @@ Clean Workspace
 
 ---
 
-## Next Module
 
-Module 3.6 extends this pipeline by adding:
+
+## Module 3.6 extends this pipeline by adding:
 
 - Manual Approval
 - Terraform Apply
 - Terraform Output
 - Infrastructure Deployment (CD)
+
+
+## Module 3.7.1 – Automatic Inventory Update
+
+### Overview
+
+After Terraform provisions the EC2 instance, Jenkins retrieves the EC2 public IP using Terraform outputs and automatically updates the Ansible development inventory.
+
+### Workflow
+
+```text
+Terraform Apply
+        │
+        ▼
+Terraform Output
+        │
+        ▼
+Update ansible/inventories/dev/hosts
+```
+
+### Benefits
+
+- Eliminates manual inventory updates.
+- Keeps the inventory synchronized with Terraform.
+- Prepares the inventory for automated Ansible deployments.
