@@ -131,13 +131,12 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
 
                         sh """
                             sed -i 's/^web1 ansible_host=.*/web1 ansible_host=${publicIp}/' \
-                            #../../../../ansible/inventories/dev/hosts
                             /home/saw/Lab-project-1/enterprise-devops-platform/ansible/inventories/dev/hosts
                             """
 
                         sh '''
                             echo "===== Updated Inventory ====="
-                            cat ../../../../ansible/inventories/dev/hosts
+                            cat /home/saw/Lab-project-1/enterprise-devops-platform/ansible/inventories/dev/hosts
                             '''
             }
         }
