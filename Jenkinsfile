@@ -171,6 +171,18 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
     }
 }
 
+        stage('Verify Ansible Connectivity') {
+            steps {
+                dir("ansible") {
+                    sh '''
+                        ansible-playbook \
+                        -i ../../../inventories/dev/hosts \
+                        playbooks/verify.yml
+            '''
+        }
+    }
+}
+
     }
 
     post {
