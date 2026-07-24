@@ -264,3 +264,31 @@ Update ansible/inventories/dev/hosts
 - Eliminates manual inventory updates.
 - Keeps the inventory synchronized with Terraform.
 - Prepares the inventory for automated Ansible deployments.
+
+
+## Module 3.7.2 – Wait for SSH
+
+### Overview
+
+After Terraform provisions the EC2 instance, Jenkins waits until the SSH service becomes available before executing any Ansible tasks.
+
+### Workflow
+
+```text
+Terraform Apply
+        │
+        ▼
+Update Inventory
+        │
+        ▼
+Wait for TCP Port 22
+        │
+        ▼
+Continue Pipeline
+```
+
+### Benefits
+
+- Prevents Ansible connection failures.
+- Ensures EC2 is fully initialized.
+- Makes the deployment pipeline more reliable.
