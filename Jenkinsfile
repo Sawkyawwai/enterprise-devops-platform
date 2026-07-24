@@ -176,7 +176,7 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
                 dir("ansible") {
                     sh '''
                         ansible-playbook \
-                        -i ../../../inventories/dev/hosts \
+                        -i inventories/dev/hosts \
                         playbooks/verify.yml
             '''
         }
