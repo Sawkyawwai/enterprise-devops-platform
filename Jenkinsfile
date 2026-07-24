@@ -143,6 +143,34 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
     }
 }
 
+        stage('Wait for SSH') {
+            steps {
+
+                script {
+
+                    def publicIp = sh(
+                        script: """
+                            cd ${TF_DIR}
+                            terraform output -raw instance_public_ip
+                        """,
+                    returnStdout: true
+                    ).trim()
+
+                echo "Waiting for SSH on ${publicIp}..."
+
+                    sh """
+                        until nc -z ${publicIp} 22
+                        do
+                echo "SSH is not ready yet..."
+                    sleep 10
+                done
+
+                echo "SSH is ready."
+            """
+        }
+    }
+}
+
     }
 
     post {
