@@ -320,3 +320,34 @@ Run verify.yml
 - Confirms SSH authentication is working.
 - Validates the Ansible inventory.
 - Ensures the target host is ready before deployment.
+
+
+## Module 3.7.4 – Deploy Nginx with Ansible
+
+### Overview
+
+After verifying SSH connectivity, Jenkins executes the Ansible site playbook to configure the EC2 instance automatically.
+
+### Workflow
+
+```text
+Terraform Apply
+        │
+        ▼
+Update Inventory
+        │
+        ▼
+Verify Connectivity
+        │
+        ▼
+Run site.yml
+        │
+        ▼
+Install and Configure Nginx
+```
+
+### Benefits
+
+- Fully automated server configuration.
+- No manual SSH login required.
+- Infrastructure provisioning and configuration are executed in a single CI/CD pipeline.
