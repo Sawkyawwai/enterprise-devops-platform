@@ -292,3 +292,31 @@ Continue Pipeline
 - Prevents Ansible connection failures.
 - Ensures EC2 is fully initialized.
 - Makes the deployment pipeline more reliable.
+
+
+## Module 3.7.3 – Verify Ansible Connectivity
+
+### Overview
+
+Before deploying the application, Jenkins verifies SSH connectivity to the EC2 instance by running a simple Ansible playbook.
+
+### Workflow
+
+```text
+Terraform Apply
+        │
+        ▼
+Update Inventory
+        │
+        ▼
+Wait for SSH
+        │
+        ▼
+Run verify.yml
+```
+
+### Benefits
+
+- Confirms SSH authentication is working.
+- Validates the Ansible inventory.
+- Ensures the target host is ready before deployment.
