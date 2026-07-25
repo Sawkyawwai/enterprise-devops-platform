@@ -1,0 +1,6 @@
+---
+- name: Install docker
+  hosts: jenkins
+  become: yes
+  roles:
+    - docker
