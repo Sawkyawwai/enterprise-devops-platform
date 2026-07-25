@@ -199,6 +199,22 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
     }
 }
 
+        stage('Verify Deployment') {
+            steps {
+                dir("ansible") {
+                    sh '''
+                    echo "===== Verifying Deployment ====="
+
+                        ansible-playbook \
+                        -i inventories/dev/hosts \
+                        playbooks/check-web.yml
+
+                    echo "===== Verification Complete ====="
+            '''
+        }
+    }
+}
+
     }
 
     post {

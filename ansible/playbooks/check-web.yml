@@ -1,0 +1,16 @@
+---
+- name: Verify Nginx Deployment
+  hosts: web
+  become: true
+  tasks:
+    - name: Check Nginx service
+      systemd:
+        name: nginx
+      register: nginx_status
+    - name: Display Nginx Status
+      debug:
+        var: nginx_status.status.ActiveState
+    - name: Verify HTTP endpoint
+      uri:
+        url: "http://localhost"
+        status_code: 200
