@@ -183,17 +183,29 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
     }
 }
 
-        stage('Deploy Nginx') {
+        stage('Install Docker') {
+           steps {
+                dir("ansible") {
+                    sh '''
+                        ansible-playbook \
+                        -i inventories/dev/hosts \
+                        playbooks/docker.yml
+                    '''
+        }
+    }
+}
+
+        stage('Deploy Nginx Container') {
             steps {
                 dir("ansible") {
                     sh '''
-                echo "===== Deploying Nginx ====="
+                echo "===== Deploying Nginx Container ====="
 
                         ansible-playbook \
                         -i inventories/dev/hosts \
-                        playbooks/site.yml
+                        playbooks/docker-nginx.yml
 
-                echo "===== Deployment Completed ====="
+                echo "===== Nginx Container Completed ====="
             '''
         }
     }

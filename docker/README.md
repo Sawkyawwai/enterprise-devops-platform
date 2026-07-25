@@ -49,3 +49,39 @@ Expected:
 - Docker installed successfully.
 - Docker service is running.
 - Ubuntu user added to the docker group.
+
+
+# Module 4.2 – Deploy Nginx Container
+
+## Objective
+
+Deploy the official Nginx Docker container to the EC2 instance using Ansible.
+
+## Components
+
+- Docker Engine
+- Docker SDK for Python
+- community.docker collection
+- Official nginx image
+
+## Workflow
+
+Terraform
+    │
+EC2
+    │
+Docker
+    │
+Nginx Container
+
+## Verification
+
+```bash
+docker ps
+```
+
+Expected:
+
+- Nginx container running
+- Port 80 published
+- Website accessible from browser

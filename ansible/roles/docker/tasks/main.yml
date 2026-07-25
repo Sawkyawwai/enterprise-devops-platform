@@ -18,3 +18,7 @@
     name: ubuntu
     groups: docker
     append: yes
+- name: Install Python Docker SDK
+  apt:
+    name: python3-docker
+    state: present
