@@ -215,6 +215,35 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
     }
 }
 
+        stage('Deployment Summary') {
+            steps {
+
+                dir("${TF_DIR}") {
+
+                    script {
+
+                        def publicIp = sh(
+                        script: "terraform output -raw instance_public_ip",
+                        returnStdout: true
+                        ).trim()
+
+                                echo """
+                =========================================
+                Enterprise DevOps Platform Deployment
+                =========================================
+
+                Environment : dev
+                EC2 Public IP : ${publicIp}
+                Application   : Nginx
+                Status        : SUCCESS
+
+                =========================================
+                """
+            }
+        }
+    }
+}
+
     }
 
     post {
