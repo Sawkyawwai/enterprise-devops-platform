@@ -351,3 +351,30 @@ Install and Configure Nginx
 - Fully automated server configuration.
 - No manual SSH login required.
 - Infrastructure provisioning and configuration are executed in a single CI/CD pipeline.
+
+## Module 3.7.5 – Verify Deployment
+
+### Overview
+
+After Ansible configures the EC2 instance, Jenkins verifies that the deployment was successful by checking the Nginx service and validating the HTTP endpoint.
+
+### Workflow
+
+```text
+Deploy Nginx
+        │
+        ▼
+Check nginx service
+        │
+        ▼
+Verify HTTP endpoint
+        │
+        ▼
+Deployment Successful
+```
+
+### Benefits
+
+- Confirms the Nginx service is active.
+- Verifies the web server responds with HTTP 200.
+- Adds an automated validation step to the deployment pipeline.
