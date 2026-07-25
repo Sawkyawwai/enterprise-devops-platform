@@ -378,3 +378,17 @@ Deployment Successful
 - Confirms the Nginx service is active.
 - Verifies the web server responds with HTTP 200.
 - Adds an automated validation step to the deployment pipeline.
+
+## Module 3.8 – Deployment Summary
+
+### Overview
+
+At the end of a successful deployment, Jenkins displays a summary containing the deployment environment, EC2 public IP address, deployed application, and overall pipeline status.
+
+### Benefits
+
+- Provides immediate deployment visibility.
+- Makes Jenkins logs easier to review.
+- Improves pipeline readability.
+
+
