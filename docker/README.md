@@ -85,3 +85,42 @@ Expected:
 - Nginx container running
 - Port 80 published
 - Website accessible from browser
+
+
+# Module 4.3 – Build Custom Docker Image
+
+## Objective
+
+Create a custom Docker image based on the official Nginx image.
+
+## Files
+
+```
+docker/
+├── Dockerfile
+├── index.html
+```
+
+## Build
+
+```bash
+docker build -t enterprise-devops-web:1.0 docker/
+```
+
+## Run
+
+```bash
+docker run -d -p 8081:80 enterprise-devops-web:1.0
+```
+
+## Verification
+
+Open:
+
+```
+http://localhost:8081
+```
+
+Expected:
+
+- Custom Enterprise DevOps Platform page is displayed.
