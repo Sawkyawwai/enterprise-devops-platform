@@ -1,6 +1,6 @@
 ---
 - name: Install docker
-  hosts: jenkins
+  hosts: web
   become: yes
   roles:
     - docker

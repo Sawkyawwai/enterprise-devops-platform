@@ -22,3 +22,15 @@
   apt:
     name: python3-docker
     state: present
+- name: Pull nginx image
+  docker_image:
+    name: nginx
+    source: pull
+- name: Run nginx container
+  docker_container:
+     name: nginx
+     image: nginx:latest
+     state: started
+        restart_policy: always
+        published_ports:
+          - "80:80"

@@ -1,6 +1,6 @@
 ---
 - name: Deploy Nginx Container
-  hosts: jenkins
+  hosts: web
   become: true
   tasks:
     - name: Pull nginx image
