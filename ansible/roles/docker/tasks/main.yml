@@ -31,6 +31,6 @@
      name: nginx
      image: nginx:latest
      state: started
-        restart_policy: always
-        published_ports:
-          - "80:80"
+     restart_policy: always
+     published_ports:
+       - "80:80"
