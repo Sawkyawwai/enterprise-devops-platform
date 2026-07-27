@@ -124,3 +124,41 @@ http://localhost:8081
 Expected:
 
 - Custom Enterprise DevOps Platform page is displayed.
+
+
+# Module 4.4 – Push Image to Docker Hub
+
+## Objective
+
+Publish the custom Docker image to Docker Hub so it can be pulled by any Docker host.
+
+## Commands
+
+Build:
+
+```bash
+docker build -t enterprise-devops-web:1.0 .
+```
+
+Tag:
+
+```bash
+docker tag enterprise-devops-web:1.0 <dockerhub-username>/enterprise-devops-web:1.0
+```
+
+Push:
+
+```bash
+docker push <dockerhub-username>/enterprise-devops-web:1.0
+```
+
+Verify:
+
+```bash
+docker pull <dockerhub-username>/enterprise-devops-web:1.0
+```
+
+## Outcome
+
+- Custom image stored in Docker Hub.
+- Image can be deployed on any Docker host.
