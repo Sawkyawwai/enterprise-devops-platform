@@ -28,7 +28,7 @@
     source: pull
 - name: Run nginx container
   docker_container:
-     name: nginx
+    name: nginx
      image: nginx:latest
      state: started
      restart_policy: always

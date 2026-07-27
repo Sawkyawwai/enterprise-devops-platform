@@ -162,3 +162,32 @@ docker pull <dockerhub-username>/enterprise-devops-web:1.0
 
 - Custom image stored in Docker Hub.
 - Image can be deployed on any Docker host.
+
+
+# Module 4.5 – Build and Push Docker Image with Jenkins
+
+## Objective
+
+Automate Docker image creation and publication using Jenkins.
+
+## Jenkins Stages
+
+- Build Docker image
+- Tag Docker image
+- Push image to Docker Hub
+
+## Verification
+
+After the Jenkins pipeline completes successfully:
+
+- The image is available on Docker Hub.
+- The `1.0` tag is visible.
+- The image can be pulled from any Docker host.
+
+## Commands Executed
+
+```bash
+docker build -t enterprise-devops-web:1.0 .
+docker tag enterprise-devops-web:1.0 <dockerhub-username>/enterprise-devops-web:1.0
+docker push <dockerhub-username>/enterprise-devops-web:1.0
+```

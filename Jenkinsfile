@@ -240,6 +240,27 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
     }
 }
 
+        stage('Build Docker Image') {
+            steps {
+
+             dir("docker") {
+
+                sh '''
+                    docker build \
+                    -t enterprise-devops-web:1.0 .
+
+                    docker tag \
+                        enterprise-devops-web:1.0 \
+                        sawwi/enterprise-devops-web:1.0
+
+                    docker push \
+                        sawwi/enterprise-devops-web:1.0
+                    '''
+        }
+
+    }
+}
+
     }
 
     post {
