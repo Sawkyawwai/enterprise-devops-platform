@@ -247,14 +247,14 @@ public_key_path    = "/var/lib/jenkins/.ssh/id_ed25519.pub"
 
                 sh '''
                     docker build \
-                    -t enterprise-devops-web:1.0 .
+                    -t enterprise-devops-web:1.1 .
 
                     docker tag \
-                        enterprise-devops-web:1.0 \
-                        sawwi/enterprise-devops-web:1.0
+                        enterprise-devops-web:1.1 \
+                        sawwi/enterprise-devops-web:1.1
 
                     docker push \
-                        sawwi/enterprise-devops-web:1.0
+                        sawwi/enterprise-devops-web:1.1
                     '''
         }
 

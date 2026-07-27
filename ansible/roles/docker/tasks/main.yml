@@ -29,8 +29,8 @@
 - name: Run nginx container
   docker_container:
     name: nginx
-     image: nginx:latest
-     state: started
-     restart_policy: always
-     published_ports:
-       - "80:80"
+    image: nginx:latest
+    state: started
+    restart_policy: always
+    published_ports:
+      - "80:80"
