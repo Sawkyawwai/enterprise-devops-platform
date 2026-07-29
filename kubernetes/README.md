@@ -77,3 +77,44 @@ kubectl get pods -n enterprise-devops
 - Namespace created.
 - Deployment created with 2 replicas.
 - Pods running successfully using the custom Docker image.
+
+
+# Module 5.4 – Expose Application with a Service
+
+## Objective
+
+Expose the Kubernetes Deployment using a NodePort Service.
+
+## Files
+
+```
+kubernetes/
+├── service.yaml
+```
+
+## Commands
+
+Deploy Service
+
+```bash
+kubectl apply -f service.yaml
+```
+
+Verify
+
+```bash
+kubectl get svc -n enterprise-devops
+kubectl get endpoints -n enterprise-devops
+```
+
+Access Application
+
+```text
+http://<Node-IP>:30080
+```
+
+## Outcome
+
+- NodePort Service created.
+- Service routes traffic to all application Pods.
+- Application is accessible from outside the cluster.
