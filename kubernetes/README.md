@@ -1,4 +1,4 @@
-# Module 5.3 – Deploy Docker Image to Kubernetes
+# Module 5.1 – Deploy Docker Image to Kubernetes
 
 ## Objective
 
@@ -79,7 +79,7 @@ kubectl get pods -n enterprise-devops
 - Pods running successfully using the custom Docker image.
 
 
-# Module 5.4 – Expose Application with a Service
+# Module 5.2 – Expose Application with a Service
 
 ## Objective
 
@@ -118,3 +118,42 @@ http://<Node-IP>:30080
 - NodePort Service created.
 - Service routes traffic to all application Pods.
 - Application is accessible from outside the cluster.
+
+
+# Module 5.3 – Install NGINX Ingress Controller
+
+## Objective
+
+Install the NGINX Ingress Controller to provide a single HTTP entry point for applications running in the Kubernetes cluster.
+
+## Commands
+
+Install the controller:
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+```
+
+Verify the Pods:
+
+```bash
+kubectl get pods -n ingress-nginx
+```
+
+Verify the Service:
+
+```bash
+kubectl get svc -n ingress-nginx
+```
+
+Verify the IngressClass:
+
+```bash
+kubectl get ingressclass
+```
+
+## Outcome
+
+- NGINX Ingress Controller installed.
+- `nginx` IngressClass available.
+- Cluster ready to create Ingress resources.
