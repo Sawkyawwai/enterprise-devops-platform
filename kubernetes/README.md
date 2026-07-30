@@ -157,3 +157,52 @@ kubectl get ingressclass
 - NGINX Ingress Controller installed.
 - `nginx` IngressClass available.
 - Cluster ready to create Ingress resources.
+
+
+# Module 5.4 – Configure Kubernetes Ingress
+
+## Objective
+
+Expose the application using an NGINX Ingress Controller and a hostname instead of accessing the Service directly.
+
+## Files
+
+```
+kubernetes/
+├── ingress.yaml
+```
+
+## Commands
+
+Deploy the Ingress:
+
+```bash
+kubectl apply -f ingress.yaml
+```
+
+Verify:
+
+```bash
+kubectl get ingress -n enterprise-devops
+kubectl describe ingress enterprise-devops-ingress -n enterprise-devops
+```
+
+## Local Testing
+
+Add an entry to your local hosts file:
+
+```text
+<Node-IP> enterprise-devops.local
+```
+
+If the Ingress Controller uses a NodePort Service:
+
+```text
+http://enterprise-devops.local:<NodePort>
+```
+
+## Outcome
+
+- Application exposed through an Ingress resource.
+- Host-based routing configured.
+- Ready for additional applications and HTTPS in future modules.
