@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: enterprise-devops-config
+  namespace: enterprise-devops
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Saw Enterprise DevOps Platform</title>
+    </head>
+    <body>
+      <h1>Enterprise DevOps Platform</h1>
+
+      <p>Provisioned by Terraform</p>
+      <p>Configured by Ansible</p>
+      <p>Built with Docker</p>
+      <p>Deployed to Kubernetes</p>
+      <p>Exposed through NGINX Ingress</p>
+
+      <h3>Configuration Source</h3>
+      <p>This page is served from a Kubernetes ConfigMap.</p>
+    </body>
+    </html>

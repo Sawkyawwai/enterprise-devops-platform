@@ -31,14 +31,13 @@ spec:
         imagePullPolicy: IfNotPresent
         name: web
         ports:
-        - containerPort: 80
-          protocol: TCP
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status: {}
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+          - name: website-content
+            mountPath: /usr/share/nginx/html/index.html
+            subPath: index.html
+      volumes:
+        - name: website-content
+          configMap:
+            name: enterprise-devops-config
