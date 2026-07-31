@@ -248,3 +248,45 @@ kubectl exec -it <pod-name> -n enterprise-devops -- cat /usr/share/nginx/html/in
 - Website content managed by a ConfigMap.
 - Deployment mounts the ConfigMap into the container.
 - Configuration can be updated independently of the Docker image.
+
+
+# Module 5.6 – Manage Sensitive Data with Kubernetes Secrets
+
+## Objective
+
+Store sensitive application configuration in a Kubernetes Secret and inject it into the application as environment variables.
+
+## Files
+
+```
+kubernetes/
+├── secret.yaml
+├── deployment.yaml
+```
+
+## Commands
+
+Create the Secret:
+
+```bash
+kubectl apply -f secret.yaml
+```
+
+Verify:
+
+```bash
+kubectl get secret -n enterprise-devops
+kubectl describe secret enterprise-devops-secret -n enterprise-devops
+```
+
+Verify environment variables:
+
+```bash
+kubectl exec -it <pod-name> -n enterprise-devops -- env | grep APP_
+```
+
+## Outcome
+
+- Sensitive values stored in a Kubernetes Secret.
+- Secret injected into the Pod as environment variables.
+- Deployment no longer requires sensitive values to be hardcoded.

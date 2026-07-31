@@ -33,6 +33,18 @@ spec:
         ports:
           - containerPort: 80
             protocol: TCP
+        env:
+          - name: APP_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: enterprise-devops-secret
+                key: APP_USERNAME
+
+          - name: APP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: enterprise-devops-secret
+                key: APP_PASSWORD
         volumeMounts:
           - name: website-content
             mountPath: /usr/share/nginx/html/index.html
