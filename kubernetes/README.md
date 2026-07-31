@@ -206,3 +206,45 @@ http://enterprise-devops.local:<NodePort>
 - Application exposed through an Ingress resource.
 - Host-based routing configured.
 - Ready for additional applications and HTTPS in future modules.
+
+
+# Module 5.5 – Externalize Configuration with ConfigMaps
+
+## Objective
+
+Store website content in a Kubernetes ConfigMap and mount it into the NGINX container.
+
+## Files
+
+```
+kubernetes/
+├── configmap.yaml
+├── deployment.yaml
+```
+
+## Commands
+
+Create the ConfigMap:
+
+```bash
+kubectl apply -f configmap.yaml
+```
+
+Update the Deployment:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+Verify:
+
+```bash
+kubectl get configmap -n enterprise-devops
+kubectl exec -it <pod-name> -n enterprise-devops -- cat /usr/share/nginx/html/index.html
+```
+
+## Outcome
+
+- Website content managed by a ConfigMap.
+- Deployment mounts the ConfigMap into the container.
+- Configuration can be updated independently of the Docker image.
