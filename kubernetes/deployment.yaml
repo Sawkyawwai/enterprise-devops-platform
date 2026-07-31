@@ -1,18 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: "2026-07-29T04:33:05Z"
   generation: 1
   labels:
     app: enterprise-devops-web
   name: enterprise-devops-web
   namespace: enterprise-devops
-  resourceVersion: "16399"
-  uid: d91a171d-f9d4-4e44-9503-6fec40c36c80
 spec:
-  progressDeadlineSeconds: 600
   replicas: 2
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: enterprise-devops-web
@@ -27,29 +22,9 @@ spec:
         app: enterprise-devops-web
     spec:
       containers:
-      - image: sawwi/enterprise-devops-web:1.0
+      - image: sawwi/enterprise-devops-web:2.0
         imagePullPolicy: IfNotPresent
         name: web
         ports:
           - containerPort: 80
             protocol: TCP
-        env:
-          - name: APP_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: enterprise-devops-secret
-                key: APP_USERNAME
-
-          - name: APP_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: enterprise-devops-secret
-                key: APP_PASSWORD
-        volumeMounts:
-          - name: website-content
-            mountPath: /usr/share/nginx/html/index.html
-            subPath: index.html
-      volumes:
-        - name: website-content
-          configMap:
-            name: enterprise-devops-config

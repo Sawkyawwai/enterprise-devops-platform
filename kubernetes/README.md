@@ -290,3 +290,50 @@ kubectl exec -it <pod-name> -n enterprise-devops -- env | grep APP_
 - Sensitive values stored in a Kubernetes Secret.
 - Secret injected into the Pod as environment variables.
 - Deployment no longer requires sensitive values to be hardcoded.
+
+
+# Module 5.7 – Rolling Updates & Rollbacks
+
+## Objective
+
+Upgrade the application to a new container image version with zero downtime and demonstrate rollback capabilities.
+
+## Commands
+
+Update the Deployment:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+Watch the rollout:
+
+```bash
+kubectl rollout status deployment/enterprise-devops-web -n enterprise-devops
+kubectl get pods -n enterprise-devops -w
+```
+
+View rollout history:
+
+```bash
+kubectl rollout history deployment/enterprise-devops-web -n enterprise-devops
+```
+
+Rollback:
+
+```bash
+kubectl rollout undo deployment/enterprise-devops-web -n enterprise-devops
+```
+
+Rollback to a specific revision:
+
+```bash
+kubectl rollout undo deployment/enterprise-devops-web --to-revision=1 -n enterprise-devops
+```
+
+## Outcome
+
+- Built and deployed application version 2.0.
+- Performed a zero-downtime rolling update.
+- Verified rollout history.
+- Successfully rolled back to a previous version.
