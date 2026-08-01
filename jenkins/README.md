@@ -424,3 +424,39 @@ sawwi/enterprise-devops-web:2.1
 - Docker image automatically built.
 - Docker image automatically pushed to Docker Hub.
 - Infrastructure pipeline remains unchanged.
+
+
+# Module 6.2 – Deploy Docker Image to Kubernetes
+
+## Objective
+
+Extend the Kubernetes Jenkins pipeline to deploy the latest Docker image to Kubernetes automatically.
+
+## Pipeline Stages
+
+- Checkout Source
+- Build Docker Image
+- Push Docker Image
+- Deploy to Kubernetes
+- Verify Rollout
+
+## Deployment Command
+
+```bash
+kubectl set image deployment/enterprise-devops-web \
+web=sawwi/enterprise-devops-web:2.1 \
+-n enterprise-devops
+```
+
+## Verification
+
+```bash
+kubectl rollout status deployment/enterprise-devops-web \
+-n enterprise-devops
+```
+
+## Outcome
+
+- Jenkins deploys the application automatically.
+- Kubernetes performs a rolling update.
+- Jenkins waits for the rollout to complete before marking the build successful.
