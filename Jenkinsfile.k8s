@@ -55,6 +55,25 @@ pipeline {
             }
         }
 
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                    kubectl set image deployment/enterprise-devops-web \
+                    web=${IMAGE_NAME}:${IMAGE_TAG} \
+                    -n enterprise-devops
+                    '''
+    }
+}
+
+        stage('Verify Rollout') {
+            steps {
+                sh '''
+                    kubectl rollout status deployment/enterprise-devops-web \
+                    -n enterprise-devops
+                    '''
+    }
+}
+
     }
 
     post {
