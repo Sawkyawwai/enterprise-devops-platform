@@ -79,7 +79,7 @@ pipeline {
     post {
 
         success {
-            echo 'Docker image successfully built and pushed.'
+            echo 'Docker image successfully built, pushed and deployed to cluster.'
         }
 
         failure {
