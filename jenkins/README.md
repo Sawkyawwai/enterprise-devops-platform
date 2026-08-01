@@ -392,3 +392,35 @@ At the end of a successful deployment, Jenkins displays a summary containing the
 - Improves pipeline readability.
 
 
+-------------------------------------------
+
+# Module 6.1 – Docker Build Pipeline
+
+## Objective
+
+Create a dedicated Jenkins pipeline to build and publish Docker images.
+
+## Pipeline Stages
+
+- Checkout Source
+- Build Docker Image
+- Push Docker Image
+
+## Jenkins Pipeline
+
+```
+Jenkinsfile.k8s
+```
+
+## Docker Image
+
+```
+sawwi/enterprise-devops-web:2.1
+```
+
+## Outcome
+
+- Separate Kubernetes CI/CD pipeline.
+- Docker image automatically built.
+- Docker image automatically pushed to Docker Hub.
+- Infrastructure pipeline remains unchanged.
