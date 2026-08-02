@@ -83,23 +83,36 @@ pipeline {
 
                     curl -f \
                     -H "Host: enterprise-devops.local" \
-                    http://192.168.81.52:30181
+                    http://192.168.81.51:30181
                 '''
-    }
-}
+            }
+        }
 
     }
 
     post {
 
-        success {
-            echo 'Docker image successfully built, pushed and deployed to cluster.'
-        }
-
-        failure {
-            echo 'Docker pipeline failed.'
-        }
-
+    success {
+        echo 'Application deployed successfully.'
     }
+
+    failure {
+
+        echo 'Deployment failed.'
+        echo 'Rolling back to previous version...'
+
+        sh '''
+            kubectl rollout undo deployment/enterprise-devops-web \
+            -n enterprise-devops
+
+            kubectl rollout status deployment/enterprise-devops-web \
+            -n enterprise-devops
+        '''
+    }
+
+    always {
+        echo 'Pipeline finished.'
+    }
+}
 
 }

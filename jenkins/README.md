@@ -516,3 +516,30 @@ http://192.168.81.51:30181
 
 - Jenkins validates the application after deployment.
 - The pipeline fails if the application is unreachable or returns an HTTP error.
+
+
+# Module 6.5 – Automatic Rollback
+
+## Objective
+
+Automatically restore the previous application version when deployment verification fails.
+
+## Rollback Command
+
+```bash
+kubectl rollout undo deployment/enterprise-devops-web \
+-n enterprise-devops
+```
+
+## Verification
+
+```bash
+kubectl rollout status deployment/enterprise-devops-web \
+-n enterprise-devops
+```
+
+## Outcome
+
+- Jenkins automatically restores the previous deployment when verification fails.
+- Downtime is minimized.
+- Failed releases do not remain active.
