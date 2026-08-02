@@ -492,3 +492,27 @@ enterprise-devops-web:17
 
 - Manual image version updates are no longer required.
 - Jenkins automatically deploys the correct image version to Kubernetes.
+
+
+# Module 6.4 – Post-Deployment Verification
+
+## Objective
+
+Verify that the application is reachable after deployment.
+
+## Pipeline Stage
+
+- Verify Application
+
+## Verification
+
+```bash
+curl -f \
+-H "Host: enterprise-devops.local" \
+http://192.168.81.51:30181
+```
+
+## Outcome
+
+- Jenkins validates the application after deployment.
+- The pipeline fails if the application is unreachable or returns an HTTP error.
