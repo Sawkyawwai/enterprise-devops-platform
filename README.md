@@ -4,7 +4,7 @@
 
 This repository documents an end-to-end DevOps platform built using modern Infrastructure as Code (IaC) and Continuous Integration / Continuous Deployment (CI/CD) practices.
 
-The project demonstrates how to provision AWS infrastructure with Terraform, configure systems using Ansible, automate workflows with Jenkins, build OCI-compatible container images with Podman, and deploy applications using Kubernetes.
+The project demonstrates how to provision AWS infrastructure with Terraform, configure systems using Ansible, automate workflows with Jenkins, build OCI-compatible container images with Docker, and deploy applications using Kubernetes.
 
 ---
 
@@ -28,7 +28,7 @@ The project demonstrates how to provision AWS infrastructure with Terraform, con
 - Jenkins
 - Terraform
 - Ansible
-- Podman
+- Docker
 - Kubernetes
 - AWS
 
@@ -50,7 +50,7 @@ Project Initialization
 terraform/
 ansible/
 jenkins/
-podman/
+docker/
 kubernetes/
 docs/
 scripts/
