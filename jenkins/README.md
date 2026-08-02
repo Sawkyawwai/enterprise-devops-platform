@@ -460,3 +460,35 @@ kubectl rollout status deployment/enterprise-devops-web \
 - Jenkins deploys the application automatically.
 - Kubernetes performs a rolling update.
 - Jenkins waits for the rollout to complete before marking the build successful.
+
+
+# Module 6.3 – Automatic Docker Image Versioning
+
+## Objective
+
+Automatically tag Docker images using the Jenkins build number.
+
+## Image Tag
+
+```
+${BUILD_NUMBER}
+```
+
+Example:
+
+```
+enterprise-devops-web:15
+enterprise-devops-web:16
+enterprise-devops-web:17
+```
+
+## Benefits
+
+- Unique image for every pipeline run.
+- Easy rollback.
+- Easy traceability between Jenkins builds and Docker images.
+
+## Outcome
+
+- Manual image version updates are no longer required.
+- Jenkins automatically deploys the correct image version to Kubernetes.
