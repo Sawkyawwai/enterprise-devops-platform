@@ -337,3 +337,31 @@ kubectl rollout undo deployment/enterprise-devops-web --to-revision=1 -n enterpr
 - Performed a zero-downtime rolling update.
 - Verified rollout history.
 - Successfully rolled back to a previous version.
+
+
+-----------------------------------------------------------------
+
+# Module 7.1 – Metrics Server
+
+## Objective
+
+Install Metrics Server to collect Kubernetes resource metrics.
+
+## Installation
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
+
+## Verification
+
+```bash
+kubectl top nodes
+kubectl top pods -A
+```
+
+## Outcome
+
+- Metrics Server installed.
+- CPU and memory metrics available.
+- Cluster ready for Prometheus.
